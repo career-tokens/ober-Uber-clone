@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 // import react router dom.
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route
 } from 'react-router-dom';
 // import custom components.
@@ -132,17 +132,15 @@ function App() {
   return (
     <Context.Provider value={{isLoading, setIsLoading, user, setUser, cometChat, selectedFrom, setSelectedFrom, selectedTo, setSelectedTo, rideRequest, setRideRequest, currentRide, setCurrentRide}}>
       <Router>
-        <Switch>
+        <Routes>
           {/* Home Route */}
-          <PrivateRoute exact path="/" component={Home} />
-          <PrivateRoute exact path="/chat" component={Chat} />
+          <Route path="/" element={ <Home />} />
+          <Route path="/chat" element={ <Chat/>} />
           {/* End Home Route */}
           {/* Login Route */}
-          <Route exact path="/login">
-            <Login />
-          </Route>
+          <Route path="/login" element={ <Login />} />  
           {/* End Login Route */}
-        </Switch>
+        </Routes>
       </Router>
       {isLoading && <Loading />}
     </Context.Provider>

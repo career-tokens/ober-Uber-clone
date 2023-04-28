@@ -1,7 +1,7 @@
 // import react.
 import React from 'react';
 // import react router.
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Navigate } from 'react-router-dom';
 
 const PrivateRoute = ({component: Component, ...rest}) => {
     return (
@@ -11,7 +11,7 @@ const PrivateRoute = ({component: Component, ...rest}) => {
         <Route {...rest} render={props => (
             localStorage.getItem('auth') ?
                 <Component {...props} />
-            : <Redirect to="/login" />
+            : <Navigate to="/login" />
         )} />
     );
 };

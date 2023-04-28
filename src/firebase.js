@@ -1,5 +1,8 @@
-import firebase from "firebase";
-import "firebase/storage";
+import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: `${process.env.REACT_APP_FIREBASE_API_KEY}`,
@@ -7,16 +10,14 @@ const firebaseConfig = {
   databaseURL: `${process.env.REACT_APP_FIREBASE_DATABASE_URL}`,
   projectId: `${process.env.REACT_APP_FIREBASE_PROJECT_ID}`,
   storageBucket: `${process.env.REACT_APP_FIREBASE_STORAGE_BUCKET}`,
-  messagingSenderId: `${process.env.REACT_APP_FIREABSE_MESSAGING_SENDER_ID}`,
+  messagingSenderId: `${process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID}`,
   appId: `${process.env.REACT_APP_FIREBASE_APP_ID}`,
 };
 
-const app = !firebase.apps.length
-  ? firebase.initializeApp(firebaseConfig)
-  : firebase.app();
-const realTimeDb = app.database();
-const db = app.firestore();
-const auth = app.auth();
-const storage = firebase.storage();
+const app = initializeApp(firebaseConfig);
+const realTimeDb = getDatabase(app);
+const db = getFirestore(app);
+const auth = getAuth(app);
+const storage = getStorage(app);
 
 export { auth, db, storage, realTimeDb };
