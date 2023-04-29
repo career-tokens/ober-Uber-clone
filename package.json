@@ -10,7 +10,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@twemoji/api": "^14.1.0",
     "dateformat": "^4.0.0",
-    "firebase": "^9.20.0",
+    "firebase": "^9.21.0",
     "html-react-parser": "^1.4.5",
     "leaflet": "^1.9.3",
     "leaflet-geosearch": "^3.8.0",

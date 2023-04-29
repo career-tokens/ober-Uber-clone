@@ -13,6 +13,9 @@ import SignUp from "./SignUp";
 import { useNavigate } from 'react-router-dom';
 // import logo 
 import logoBlack from '../logo_black.png';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { ref, query, orderByChild, equalTo, onValue } from "firebase/database";
+import { CometChat } from "@cometchat-pro/chat";
 
 function Login(props) {
   // get shared data from context.
@@ -46,43 +49,48 @@ function Login(props) {
     const password = passwordRef.current.value;
     if (isUserCredentialsValid(email, password)) {
       // if the user's credentials are valid, call Firebase authentication service.
-      auth.signInWithEmailAndPassword(email, password).then((userCredential) => {
-          const userEmail = userCredential.user.email;
-          realTimeDb.ref().child('users').orderByChild('email').equalTo(userEmail).on("value", function(snapshot) {
+      signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+        const userEmail = userCredential.user.email;
+        onValue(
+          query(ref(realTimeDb, 'users'), orderByChild('email'), equalTo(userEmail)),
+          function (snapshot) {
             const val = snapshot.val();
             if (val) {
               const keys = Object.keys(val);
               const user = val[keys[0]];
               // login cometchat.
-              cometChat.login(user.id, `${process.env.REACT_APP_COMETCHAT_AUTH_KEY}`).then(
-                User => {
-                  // User loged in successfully.
-                  // save authenticated user to local storage.
-                  localStorage.setItem('auth', JSON.stringify(user));
-                  // save authenticated user to context.
-                  setUser(user);
-                  // hide loading.
-                  setIsLoading(false);
-                  // redirect to home page.
-                  history('/');
-                },
-                error => {
-                  // User login failed, check error and take appropriate action.
-                }
-              );
+              CometChat
+                .login(user.id, `${process.env.REACT_APP_COMETCHAT_AUTH_KEY}`)
+                .then(
+                  (user) => {
+                    // User logged in successfully.
+                    // save authenticated user to local storage.
+                    localStorage.setItem('auth', JSON.stringify(user));
+                    // save authenticated user to context.
+                    setUser(user);
+                    // hide loading.
+                    setIsLoading(false);
+                    // redirect to home page.
+                    history('/');
+                  },
+                  (error) => {
+                    // User login failed, check error and take appropriate action.
+                  }
+                );
             }
-          });
-        })
-        .catch((error) => {      
-          // hide loading indicator.
-          setIsLoading(false);
-          alert(`Your user's name or password is not correct`);
-        });
+          }
+        );
+      }).catch((error) => {
+        // hide loading indicator.
+        setIsLoading(false);
+        alert(`Your user's name or password is not correct`);
+      });
     } else {
       // hide loading indicator.
       setIsLoading(false);
       alert(`Your user's name or password is not correct`);
     }
+    
   };
 
   return (

@@ -2,6 +2,8 @@
 import { useEffect, useState, useContext } from 'react';
 // import firebase authentication.
 import { realTimeDb } from "../firebase";
+import { ref, query, orderByChild, equalTo ,onValue,off} from "firebase/database";
+
 // import Context
 import Context from '../Context';
 function RideList() {
@@ -12,8 +14,8 @@ function RideList() {
 
 
   useEffect(() => {
-    const rideRef = realTimeDb.ref().child('rides').orderByChild('status').equalTo(0);
-    const listener = rideRef.on("value", function(snapshot) {
+    const rideRef = query(ref(realTimeDb, 'rides'), orderByChild('status'), equalTo(0));
+    const listener = onValue(rideRef, function(snapshot) {
       const values = snapshot.val();
       if (values) {
         const keys = Object.keys(values);
@@ -30,7 +32,7 @@ function RideList() {
         setRideRequests(() => []);
       }
     });
-    return () => { rideRef.off('value', listener); }
+    return () => { off(rideRef, listener); }
   }, []);
 
   /**

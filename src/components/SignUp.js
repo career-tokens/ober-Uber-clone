@@ -6,8 +6,13 @@ import Context from "../Context";
 import validator from "validator";
 // import firebase authentication.
 import { auth, realTimeDb } from "../firebase";
+import { ref ,set} from "firebase/database";
 // import uuid to generate id for users.
 import { v4 as uuidv4 } from "uuid";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { CometChat } from "@cometchat-pro/chat";
+
+
 
 function SignUp(props) {
   // get toggleModal functin from higher order components.
@@ -94,10 +99,16 @@ function SignUp(props) {
       // generate user's avatar.
       const userAvatar = generateAvatar();
       // call firebase to to register a new account.
-      auth.createUserWithEmailAndPassword(email, password).then((userCrendentials) => {
+      createUserWithEmailAndPassword(auth,email, password).then((userCrendentials) => {
         if (userCrendentials) {
           // call firebase real time database to insert a new user.
-          realTimeDb.ref(`users/${userUuid}`).set({
+          /**set(ref(db, 'users/' + userId), {
+  username: name,
+  email: email,
+  profile_picture : imageUrl
+})*/
+
+         set( ref(realTimeDb,`users/${userUuid}`),{
             id: userUuid,
             email,
             phone,
@@ -108,11 +119,11 @@ function SignUp(props) {
             // cometchat auth key
             const authKey = `${process.env.REACT_APP_COMETCHAT_AUTH_KEY}`;  
             // call cometchat service to register a new account.
-            const user = new cometChat.User(userUuid);
+            const user = new CometChat.User(userUuid);
             user.setName(email);
             user.setAvatar(userAvatar);
 
-            cometChat.createUser(user, authKey).then(
+            CometChat.createUser(user, authKey).then(
               user => {
                 setIsLoading(false);
               },error => {
