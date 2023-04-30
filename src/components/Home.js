@@ -1,127 +1,42 @@
-// import useContext, useRef, useEffect, useCallback
-import { useContext, useRef, useEffect, useCallback } from 'react';
-// import custom components.
-import Header from './Header';
-import AddressPicker from './AddressPicker';
-import RideList from './RideList';
-import RideDetail from './RideDetail';
-// import Context
-import Context from '../Context';
-// import leaflet
-import L from "leaflet";
+import 'mapbox-gl/dist/mapbox-gl.css';
+import React, { useRef, useEffect, useState } from 'react';
 
-require("leaflet-routing-machine");
 
-const style = {
-width: "100%",
-height: "100vh"
-};
+import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 
-function Home() {
-
-const { selectedFrom, selectedTo, user, currentRide } = useContext(Context);
-
-const map = useRef();
-const routeControl = useRef();
-
-useEffect(() => {
-initMap();
-initRouteControl();
-}, []);
-
-const drawRoute = useCallback((from, to) => {
-if (shouldRouteDraw(from, to) && routeControl && routeControl.current) {
-const fromLatLng = new L.LatLng(from.y, from.x);
-const toLatLng = new L.LatLng(to.y, to.x);
-routeControl.current.setWaypoints([fromLatLng, toLatLng]);
-}
-}, []);
-
-useEffect(() => {
-if (shouldRouteDraw(selectedFrom, selectedTo)) {
-drawRoute(selectedFrom, selectedTo);
-}
-}, [selectedFrom, selectedTo, drawRoute]);
-
-/**
-
-    check a route should be drawn, or not.
-    @param {*} selectedFrom
-    @param {*} selectedTo
-    */
-    const shouldRouteDraw = (selectedFrom, selectedTo) => {
-    return selectedFrom && selectedTo && selectedFrom.label &&
-    selectedTo.label && selectedFrom.x && selectedTo.x &&
-    selectedFrom.y && selectedTo.y;
-    };
-
-/**
-
-    init leaflet map.
-    */
-    const initMap = () => {
-    if (!map.current) {
-    map.current = L.map("map", {
-    center: [38.8951, -77.0364],
-    zoom: 13,
-    layers: [
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    })
-    ]
-    });
-    }
-    };
-
-/**
-
-    init route control.
-    */
-    const initRouteControl = () => {
-    if (!routeControl.current) {
-    routeControl.current = L.Routing.control({
-    show: true,
-    fitSelectedRoutes: true,
-    plan: false,
-    lineOptions: {
-    styles: [
-    {
-    color: "blue",
-    opacity: "0.7",
-    weight: 6
-    }
-    ]
-    },
-    router: L.Routing.mapbox(`${process.env.REACT_APP_MAP_BOX_API_KEY}`)
-    })
-    .addTo(map.current)
-    .getPlan();
-    }
-    };
-
-const renderSidebar = () => {
-const isUser = user && user.role === 'user';
-if (isUser && !currentRide) {
-return <AddressPicker />
-}
-if (isUser && currentRide) {
-return <RideDetail user={currentRide.driver} isDriver={false} currentRide={currentRide} />
-}
-if (!isUser && !currentRide) {
-return <RideList />
-}
-if (!isUser && currentRide) {
-return <RideDetail user={currentRide.requestor} isDriver={true} currentRide={currentRide} />
-}
-}
-
+mapboxgl.accessToken = process.env.REACT_APP_MAP_BOX_API_KEY
+export default function App() {
+  const mapContainer = useRef(null);
+  const map = useRef(null);
+  const [lng, setLng] = useState(-70.9);
+  const [lat, setLat] = useState(42.35);
+  const [zoom, setZoom] = useState(9);
+   
+  useEffect(() => {
+  if (map.current) return; // initialize map only once
+  map.current = new mapboxgl.Map({
+  container: mapContainer.current,
+  style: 'mapbox://styles/mapbox/streets-v12',
+  center: [lng, lat],
+  zoom: zoom
+  });
+  });
+   
+  useEffect(() => {
+  if (!map.current) return; // wait for map to initialize
+  map.current.on('move', () => {
+  setLng(map.current.getCenter().lng.toFixed(4));
+  setLat(map.current.getCenter().lat.toFixed(4));
+  setZoom(map.current.getZoom().toFixed(2));
+  });
+  });
+   
   return (
-    <>
-      <Header />
-      <div id="map" style={style} />
-      {renderSidebar()}
-    </>
+  <div>
+  <div className="sidebar">
+  Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+  </div>
+  <div ref={mapContainer} className="map-container" />
+  </div>
   );
-}
-
-export default Home;
+  }
