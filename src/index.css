@@ -735,7 +735,7 @@ input {
   font-weight: 600;
 }
 .map-container {
-  height: 400px;
+  height: 1000px;
 }
 
 .sidebar {
@@ -749,4 +749,7 @@ input {
   left: 0;
   margin: 12px;
   border-radius: 4px;
+}
+.leaflet-container{
+  height:100vh;
 }
