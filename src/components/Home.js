@@ -2,7 +2,7 @@
 import "leaflet/dist/leaflet.css"
 import { getDatabase, ref, child, get } from "firebase/database";
 // import useContext, useRef, useEffect, useCallback
-import { useContext, useRef, useEffect, useCallback } from 'react';
+import { useContext, useRef, useEffect, useCallback, useState } from 'react';
 // import custom components.
 import Header from './Header';
 import AddressPicker from './AddressPicker';
@@ -21,7 +21,7 @@ height: "100vh"
 };
 
 function Home() {
-
+  const [isUser, setIsUser] = useState(null);
   const { selectedFrom, selectedTo, user, currentRide } = useContext(Context);
   //console.log(user)
   if (user) {
@@ -117,19 +117,17 @@ get(child(dbRef, `users/${uid}`)).then((snapshot) => {
     console.log(snapshot.val())
     rol = snapshot.val().role;
     console.log(rol)
-   
+    setIsUser(rol==='user')
   } else {
     console.log("No data available");
   }
 }).catch((error) => {
   console.error(error);
 });
-    var isUser = null;
 
-    setTimeout(() => {
+   
       console.log(rol)
       console.log(uid)
-    isUser = rol === 'user';
       console.log(isUser);
       
       if (isUser && !currentRide) {
@@ -144,7 +142,7 @@ get(child(dbRef, `users/${uid}`)).then((snapshot) => {
         if (!isUser && currentRide) {
         return <RideDetail user={currentRide.requestor} isDriver={true} currentRide={currentRide} />
         }
-  }, 3000);
+  
 
 }
 
