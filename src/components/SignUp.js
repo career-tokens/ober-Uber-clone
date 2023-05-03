@@ -122,6 +122,7 @@ function SignUp(props) {
             const user = new CometChat.User(userUuid);
             user.setName(email);
             user.setAvatar(userAvatar);
+           // user.setRole(role);
 
             CometChat.createUser(user, authKey).then(
               user => {
