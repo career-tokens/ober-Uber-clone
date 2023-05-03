@@ -71,7 +71,7 @@ function RideList() {
             <button className="ride-list__accept-btn" onClick={() => acceptRide(request)}>Accept</button>
           </div>
         </div>  
-      ))
+      )) 
     } else { 
       return (<h3 className="empty-message">You do not have any requests</h3>);
     }
