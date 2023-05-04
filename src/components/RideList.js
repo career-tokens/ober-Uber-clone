@@ -2,7 +2,7 @@
 import { useEffect, useState, useContext } from 'react';
 // import firebase authentication.
 import { realTimeDb } from "../firebase";
-import { ref, query, orderByChild, equalTo ,onValue,off} from "firebase/database";
+import {getDatabase, set,ref, query, orderByChild, equalTo ,onValue,off} from "firebase/database";
 
 // import Context
 import Context from '../Context';
@@ -14,22 +14,27 @@ function RideList() {
 
 
   useEffect(() => {
-    const rideRef = query(ref(realTimeDb, 'rides'), orderByChild('status'), equalTo(0));
+    const db = getDatabase();
+    const rideRef = query(ref(db, 'rides'), orderByChild('status'));
+    //console.log(rideRef)
     const listener = onValue(rideRef, function(snapshot) {
       const values = snapshot.val();
+      console.log(values)
       if (values) {
         const keys = Object.keys(values);
         if (keys && keys.length !== 0) {
           const rides = [];
           for (const key of keys) {
             rides.push(values[key]);
-          }      
-          setRideRequests(() => rides);
+          } 
+          //console.log("The rides are:",rides)
+          setRideRequests(()=>rides);
+          //console.log(rideRequests)
         } else {
-          setRideRequests(() => []);
+          setRideRequests( ()=>[]);
         }
       } else { 
-        setRideRequests(() => []);
+        setRideRequests( ()=>[]);
       }
     });
     return () => { off(rideRef, listener); }
@@ -39,12 +44,13 @@ function RideList() {
    * accept ride
    */
   const acceptRide = (request) => {
+    const db = getDatabase();
     // set up driver information for the request.
     request.driver = user;
     request.status = 1;
     // show loading indicator.
     setIsLoading(true);
-    realTimeDb.ref(`rides/${request.rideUuid}`).set(request).then(() => {
+    set(ref(db, `rides/${request.rideUuid}`),{ request }).then(() => {
       setIsLoading(false);
       // set created ride.
       localStorage.setItem('currentRide', JSON.stringify(request));

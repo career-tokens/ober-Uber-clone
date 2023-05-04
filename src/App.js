@@ -1,5 +1,6 @@
 // import useState
 import { useState, useEffect } from 'react';
+import { getDatabase, ref, onValue} from "firebase/database";
 // import react router dom.
 import {
   BrowserRouter as Router,
@@ -56,8 +57,9 @@ function App() {
       // show loading indicator.
       setIsLoading(true);
       // check data changes from firebase real time database. If there is a driver accepted the request.
-      const createdRideRef = realTimeDb.ref(`rides/${rideRequest.rideUuid}`);
-      createdRideRef.on("value", (snapshot) => {
+      const db = getDatabase();
+      const createdRideRef = ref(db,`rides/${rideRequest.rideUuid}`);
+      onValue(createdRideRef, (snapshot) => {
         const updatedRide = snapshot.val();
         if (updatedRide && updatedRide.rideUuid === rideRequest.rideUuid && updatedRide.driver) {
           // hide loading indicator.
@@ -77,8 +79,9 @@ function App() {
 
   useEffect(() => {
     if (currentRide) {
-      const currentRideRef = realTimeDb.ref(`rides/${currentRide.rideUuid}`);
-      currentRideRef.on("value", (snapshot) => {
+      const db = getDatabase();
+      const currentRideRef = ref(db,`rides/${currentRide.rideUuid}`);
+      onValue(currentRideRef, (snapshot) => {
         const updatedRide = snapshot.val();
         if (updatedRide && updatedRide.rideUuid === currentRide.rideUuid && updatedRide.driver && (updatedRide.status === -1 || updatedRide.status === 2)) {
           // remove localStorage.

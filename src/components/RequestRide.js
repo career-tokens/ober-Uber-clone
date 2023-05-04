@@ -6,6 +6,7 @@ import { realTimeDb } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
 // import Context
 import Context from '../Context';
+import { getDatabase, ref, set } from "firebase/database";
 
 function RequestRide(props) {
   // get toggleModal functin from higher order components.
@@ -32,7 +33,8 @@ function RequestRide(props) {
         "status": 0
       }
       // insert to Firebase realtime database.
-      realTimeDb.ref(`rides/${rideUuid}`).set(ride).then(() => {
+      const db = getDatabase();
+      set(ref(db,`rides/${rideUuid}`),{ride}).then(() => {
         setRideRequest(ride);
         setIsLoading(false);
       }).catch(() => {

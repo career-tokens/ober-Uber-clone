@@ -114,21 +114,22 @@ drawRoute(selectedFrom, selectedTo);
     const dbRef = ref(getDatabase());
 get(child(dbRef, `users/${uid}`)).then((snapshot) => {
   if (snapshot.exists()) {
-    console.log(snapshot.val())
+    //console.log(snapshot.val())
     rol = snapshot.val().role;
-    console.log(rol)
+    //console.log(rol)
     setIsUser(rol==='user')
   } else {
-    console.log("No data available");
+    //dconsole.log("No data available");
   }
 }).catch((error) => {
   console.error(error);
 });
 
    
-      console.log(rol)
-      console.log(uid)
-      console.log(isUser);
+     // console.log(rol)
+     // console.log(uid)
+      //console.log(isUser);
+     console.log(currentRide)
       
       if (isUser && !currentRide) {
         return <AddressPicker />
