@@ -19,7 +19,7 @@ function RideList() {
     //console.log(rideRef)
     const listener = onValue(rideRef, function(snapshot) {
       const values = snapshot.val();
-      console.log(values)
+      //console.log(values)
       if (values) {
         const keys = Object.keys(values);
         if (keys && keys.length !== 0) {

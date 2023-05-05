@@ -36,7 +36,7 @@ function App() {
   // current ride.
   const [currentRide, setCurrentRide] = useState(null);
 
-  const lookingDriverMaxTime = 30000;
+  const lookingDriverMaxTime = 3000000;
 
   useEffect(() => {
     initAuthUser();

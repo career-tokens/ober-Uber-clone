@@ -129,19 +129,20 @@ get(child(dbRef, `users/${uid}`)).then((snapshot) => {
      // console.log(rol)
      // console.log(uid)
       //console.log(isUser);
-     console.log(currentRide)
+    console.log(currentRide)
+     //console.log(currentRide.requestor)
       
       if (isUser && !currentRide) {
         return <AddressPicker />
         }
-        if (isUser && currentRide) {
-        return <RideDetail user={currentRide.driver} isDriver={false} currentRide={currentRide} />
-        }
+        //if (isUser && currentRide) {
+        //return <RideDetail user={currentRide.driver} isDriver={false} currentRide={currentRide} />
+        //}
         if (!isUser && !currentRide) {
         return <RideList />
         }
         if (!isUser && currentRide) {
-        return <RideDetail user={currentRide.requestor} isDriver={true} currentRide={currentRide} />
+        return <RideDetail user={currentRide.ride.requestor} isDriver={true} currentRide={currentRide} />
         }
   
 

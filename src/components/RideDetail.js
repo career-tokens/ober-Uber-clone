@@ -10,7 +10,7 @@ import { getDatabase, ref, set } from "firebase/database";
 
 function RideDetail(props) { 
   const { user, isDriver, currentRide } = props;
-  console.log(user)
+  //console.log(user)
 
   const { setCurrentRide, setIsLoading } = useContext(Context);
 
