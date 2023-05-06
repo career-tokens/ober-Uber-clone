@@ -6,7 +6,7 @@ import { realTimeDb } from "../firebase";
 import Context from '../Context';
 // import react router. 
 import { useNavigate } from 'react-router-dom';
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, ref, set,remove } from "firebase/database";
 
 function RideDetail(props) { 
   const { user, isDriver, currentRide } = props;
@@ -33,13 +33,10 @@ function RideDetail(props) {
     setIsLoading(true);
     // update data on Firebase.
     const db = getDatabase();
-    console.log("ride ", ryde)
-    set(ref(db, `rides/${ryde.ride.rideUuid}`),{ ryde }).then(() => {
+    remove(ref(db, "rides")).then(() => {
       setIsLoading(false);
       removeRideFromStorageAndContext();
-    }).catch(() => {
-      setIsLoading(false);
-    });
+    })
   }
 
   /**
