@@ -12,7 +12,7 @@ import RideDetail from './RideDetail';
 import Context from '../Context';
 // import leaflet
 import L from "leaflet";
-var rol = null;var uid=null;var usre = null;
+var rol = null; var uid = null; var isuser = false; var usre = null;
 require("leaflet-routing-machine");
 
 const style = {
@@ -129,19 +129,23 @@ get(child(dbRef, `users/${uid}`)).then((snapshot) => {
      // console.log(rol)
      // console.log(uid)
       //console.log(isUser);
-    console.log(currentRide)
-     //console.log(currentRide.requestor)
-      
-      if (isUser && !currentRide) {
+    //console.log(currentRide)
+    // console.log(currentRide.request.driver)
+   // console.log(!isUser)
+    if (isUser)
+      isuser = true;
+    if (currentRide && currentRide.status && currentRide.status === 2)
+    localStorage.removeItem('currentRide');
+      if (isuser && !currentRide) {
         return <AddressPicker />
         }
-        //if (isUser && currentRide) {
-        //return <RideDetail user={currentRide.driver} isDriver={false} currentRide={currentRide} />
-        //}
-        if (!isUser && !currentRide) {
+        if (isuser && currentRide) {
+        return <RideDetail user={currentRide.request.driver} isDriver={false} currentRide={currentRide} />
+        }
+        if (!isuser && !currentRide) {
         return <RideList />
         }
-        if (!isUser && currentRide) {
+        if (!isuser && currentRide&&currentRide.ride) {
         return <RideDetail user={currentRide.ride.requestor} isDriver={true} currentRide={currentRide} />
         }
   

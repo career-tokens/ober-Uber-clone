@@ -10,7 +10,7 @@ import { getDatabase, ref, set } from "firebase/database";
 
 function RideDetail(props) { 
   const { user, isDriver, currentRide } = props;
-  //console.log(user)
+  console.log(user)
 
   const { setCurrentRide, setIsLoading } = useContext(Context);
 
@@ -28,12 +28,13 @@ function RideDetail(props) {
     window.location.reload();
   }
 
-  const updateRide = (ride) => { 
+  const updateRide = (ryde) => { 
     // show loading indicator.
     setIsLoading(true);
     // update data on Firebase.
     const db = getDatabase();
-    set(ref(db, `rides/${ride.rideUuid}`),{ ride }).then(() => {
+    console.log("ride ", ryde)
+    set(ref(db, `rides/${ryde.ride.rideUuid}`),{ ryde }).then(() => {
       setIsLoading(false);
       removeRideFromStorageAndContext();
     }).catch(() => {
@@ -77,13 +78,14 @@ function RideDetail(props) {
       <div className="ride-detail__user-avatar">
         <img src={user.avatar} alt={user.email} />
       </div>
-      <p className="ride-detail__user-info">{user.email} - {user.phone}</p>
+      <p className="ride-detail__user-info">{user.name}</p>
       <div className="ride-detail__actions">
-        <p className="ride-detail__result-label"><span>From: </span>{currentRide.pickup && currentRide.pickup.label ? currentRide.pickup.label : ''}</p>
-        <p className="ride-detail__result-label"><span>To: </span>{currentRide.destination && currentRide.destination.label ? currentRide.destination.label : ''}</p>
+        {currentRide.ride&&currentRide.ride.pickup&&<p className="ride-detail__result-label"><span>From: </span>{currentRide.ride.pickup && currentRide.ride.pickup.label ? currentRide.ride.pickup.label : ''}</p>}
+        {currentRide.request&&<p className="ride-detail__result-label"><span>From: </span>{currentRide.request.ride.pickup && currentRide.request.ride.pickup.label ? currentRide.request.ride.pickup.label : ''}</p>}
+        {currentRide.destination && <p className="ride-detail__result-label"><span>To: </span>{currentRide.ride.destination && currentRide.ride.destination.label ? currentRide.ride.destination.label : ''}</p>}
         <button className="ride-detail__btn" onClick={talkToUser}>{isDriver ? 'Talk to User' : 'Talk to Driver'}</button>
         <button className="ride-detail__btn" onClick={cancelRide}>Cancel the Ride</button>
-        {isDriver && <button className="ride-detail__btn" onClick={finishRide}>Finish the Ride</button>}
+        {<button className="ride-detail__btn" onClick={finishRide}>Finish the Ride</button>}
       </div>
     </div>
   );

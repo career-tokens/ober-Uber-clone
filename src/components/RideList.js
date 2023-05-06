@@ -50,7 +50,7 @@ function RideList() {
     request.status = 1;
     // show loading indicator.
     setIsLoading(true);
-    set(ref(db, `rides/${request.rideUuid}`),{ request }).then(() => {
+    set(ref(db, `rides/${request.ride.rideUuid}`),{ request }).then(() => {
       setIsLoading(false);
       // set created ride.
       localStorage.setItem('currentRide', JSON.stringify(request));

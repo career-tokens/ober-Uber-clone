@@ -57,11 +57,14 @@ function App() {
       // show loading indicator.
       setIsLoading(true);
       // check data changes from firebase real time database. If there is a driver accepted the request.
+      //console.log(rideRequest)
       const db = getDatabase();
       const createdRideRef = ref(db,`rides/${rideRequest.rideUuid}`);
       onValue(createdRideRef, (snapshot) => {
         const updatedRide = snapshot.val();
-        if (updatedRide && updatedRide.rideUuid === rideRequest.rideUuid && updatedRide.driver) {
+        console.log("updated request ",updatedRide)
+        console.log("ride request  ",rideRequest)
+        if (updatedRide.request&&updatedRide.request.status===1 ) {
           // hide loading indicator.
           setIsLoading(false);
           // remove looking for driver timeout.
@@ -78,12 +81,14 @@ function App() {
   }, [rideRequest]);
 
   useEffect(() => {
-    if (currentRide) {
+    if (currentRide&&currentRide.ride) {
       const db = getDatabase();
-      const currentRideRef = ref(db,`rides/${currentRide.rideUuid}`);
+      const currentRideRef = ref(db,`rides/${currentRide.ride.rideUuid}`);
       onValue(currentRideRef, (snapshot) => {
         const updatedRide = snapshot.val();
-        if (updatedRide && updatedRide.rideUuid === currentRide.rideUuid && updatedRide.driver && (updatedRide.status === -1 || updatedRide.status === 2)) {
+        console.log("2nd updated ride ", updatedRide)
+        console.log("2nd para currentRide ",currentRide)
+        if (updatedRide && updatedRide.rideUuid === currentRide.rideUuid && updatedRide.driver && (updatedRide.ride.status === -1 || updatedRide.status === 2)) {
           // remove localStorage.
           localStorage.removeItem('currentRide');
           // remove data from context.

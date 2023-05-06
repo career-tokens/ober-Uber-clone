@@ -7,13 +7,14 @@ import { CometChatMessages  } from '../cometchat-pro-react-ui-kit-master/CometCh
 function Chat() {
 
   const { user, currentRide } = useContext(Context);
-
+  console.log("user ", user)
+  console.log("curretnRide= ",currentRide)
   const findUser = () => {
     if (user && currentRide) { 
-      if (user.role === 'user' && currentRide.driver && currentRide.driver.id) {
-        return currentRide.driver.id;
-      } else if (user.role === 'driver' && currentRide.requestor && currentRide.requestor.id) {
-        return currentRide.requestor.id;
+      if (currentRide.driver && currentRide.driver.uid) {
+        return currentRide.driver.uid;
+      } else if (currentRide.request&& currentRide.request.ride.requestor && currentRide.request.ride.requestor.uid) {
+        return currentRide.request.ride.requestor.uid;
       }
     }
   }
