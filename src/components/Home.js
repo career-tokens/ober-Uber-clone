@@ -8,10 +8,12 @@ import Header from './Header';
 import AddressPicker from './AddressPicker';
 import RideList from './RideList';
 import RideDetail from './RideDetail';
+import { useNavigate } from 'react-router-dom';
 // import Context
 import Context from '../Context';
 // import leaflet
-import L from "leaflet";
+import L, { Icon } from "leaflet";
+import RequestRide from "./RequestRide";
 var rol = null; var uid = null; var isuser = false; var usre = null;
 require("leaflet-routing-machine");
 
@@ -21,6 +23,7 @@ height: "100vh"
 };
 
 function Home() {
+  const history = useNavigate();
   const [isUser, setIsUser] = useState(null);
   const { selectedFrom, selectedTo, user, currentRide } = useContext(Context);
   //console.log(user)
@@ -29,6 +32,12 @@ function Home() {
     uid = user.uid
     //console.log(uid)
   }
+  const customIcon = new Icon({
+        iconUrl: "https://as2.ftcdn.net/v2/jpg/02/98/28/57/1000_F_298285715_ct4qtZOJH119A39TdMrbkLsfziVCX1Rz.jpg",
+        iconSize: [40,40],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+  })
   
  
 const map = useRef();
@@ -59,7 +68,8 @@ drawRoute(selectedFrom, selectedTo);
     @param {*} selectedFrom
     @param {*} selectedTo
     */
-    const shouldRouteDraw = (selectedFrom, selectedTo) => {
+  const shouldRouteDraw = (selectedFrom, selectedTo) => {
+      console.log(selectedFrom)
     return selectedFrom && selectedTo && selectedFrom.label &&
     selectedTo.label && selectedFrom.x && selectedTo.x &&
     selectedFrom.y && selectedTo.y;
@@ -75,8 +85,8 @@ drawRoute(selectedFrom, selectedTo);
     center: [38.8951, -77.0364],
     zoom: 13,
     layers: [
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
     })
     ]
     });
@@ -112,33 +122,35 @@ drawRoute(selectedFrom, selectedTo);
   const renderSidebar = () => {
   
     const dbRef = ref(getDatabase());
-get(child(dbRef, `users/${uid}`)).then((snapshot) => {
-  if (snapshot.exists()) {
-    //console.log(snapshot.val())
-    rol = snapshot.val().role;
-    //console.log(rol)
-    setIsUser(rol==='user')
-  } else {
-    //dconsole.log("No data available");
-  }
-}).catch((error) => {
-  console.error(error);
-});
+    get(child(dbRef, `users/${uid}`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        //console.log(snapshot.val())
+        rol = snapshot.val().role;
+        //console.log(rol)
+        setIsUser(rol === 'user')
+      } else {
+        //dconsole.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
 
    
-     // console.log(rol)
-     // console.log(uid)
-      //console.log(isUser);
+    // console.log(rol)
+    // console.log(uid)
+    //console.log(isUser);
     //console.log(currentRide)
     // console.log(currentRide.request.driver)
-   // console.log(!isUser)
+    // console.log(!isUser)
     if (isUser)
       isuser = true;
     if (currentRide && currentRide.status && currentRide.status === 2)
-    localStorage.removeItem('currentRide');
-      if (isuser && !currentRide) {
-        return <AddressPicker />
-        }
+      localStorage.removeItem('currentRide');
+    if (isuser && !currentRide && (!selectedFrom || !selectedTo)) {
+      history('/route');
+    }
+    if (selectedFrom && selectedTo&&!currentRide)
+      return <RequestRide props={"was required for modal but now not req"}/>
         if (isuser && currentRide) {
         return <RideDetail user={currentRide.request.driver} isDriver={false} currentRide={currentRide} />
         }

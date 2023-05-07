@@ -7,12 +7,13 @@ import { v4 as uuidv4 } from "uuid";
 // import Context
 import Context from '../Context';
 import { getDatabase, ref, set } from "firebase/database";
+import { useNavigate } from 'react-router-dom';
 
 function RequestRide(props) {
   // get toggleModal functin from higher order components.
-  const { toggleModal } = props;
-
-  const { user, selectedFrom, selectedTo, setRideRequest, setIsLoading } = useContext(Context);
+  //const { toggleModal } = props;
+  const history = useNavigate();
+  const { user,selectedFrom, setSelectedFrom, selectedTo, setSelectedTo, setRideRequest, setIsLoading } = useContext(Context);
 
   /**
    * request a ride
@@ -20,7 +21,7 @@ function RequestRide(props) {
   const requestRide = () => {
     if (user && selectedFrom && selectedTo) {
       // close the modal.
-      toggleModal(false);
+      //toggleModal(false);
       // show loading indicator. 
       setIsLoading(true);
       // create object.
@@ -37,6 +38,7 @@ function RequestRide(props) {
       set(ref(db,`rides/${rideUuid}`),{ride}).then(() => {
         setRideRequest(ride);
         setIsLoading(false);
+        history("/")
       }).catch(() => {
         setIsLoading(false);
       });
@@ -49,11 +51,11 @@ function RequestRide(props) {
         <div className="request-ride__container">
           <div className="request-ride__title">Requesting a Ride</div>
           <div className="request-ride__close">
-            <img
+            {/*} <img
               alt="close"
-              onClick={() => toggleModal(false)}
+             // onClick={() => toggleModal(false)}
               src="https://static.xx.fbcdn.net/rsrc.php/v3/y2/r/__geKiQnSG-.png"
-            />
+             />*/}
           </div>
         </div>
         <div className="request-ride__subtitle"></div>
@@ -61,7 +63,14 @@ function RequestRide(props) {
           <p>
             You entered the pickup location successfully. Do you want to request a ride now ?
           </p>
-          <button className="request-ride__btn request-ride__change-btn" onClick={() => toggleModal(false)}>
+          <button className="request-ride__btn request-ride__change-btn"
+            onClick={() => {
+              setSelectedTo(null)
+              setSelectedFrom(null)
+              history('/route')
+            }}
+          //onClick={() => toggleModal(false)}
+          >
             Change
           </button>
           <button className="request-ride__btn" onClick={requestRide}>

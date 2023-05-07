@@ -19,6 +19,8 @@ import './index.css';
 import Context from './Context';
 // import realtime database from Firebase.
 import { realTimeDb } from "./firebase";
+import AddressPicker from './components/AddressPicker';
+import OpeningScreen from './components/OpeningScreen';
 // create App components.
 function App() {
   // create loading state and share to other components.
@@ -148,6 +150,8 @@ function App() {
           {/* Login Route */}
           <Route path="/login" element={ <Login />} />  
           {/* End Login Route */}
+          <Route path="/route" element={<AddressPicker />} />
+          <Route path="/openingscreen" element={<OpeningScreen />} />
         </Routes>
       </Router>
       {isLoading && <Loading />}

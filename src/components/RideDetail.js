@@ -77,9 +77,10 @@ function RideDetail(props) {
       </div>
       <p className="ride-detail__user-info">{user.name}</p>
       <div className="ride-detail__actions">
-        {currentRide.ride&&currentRide.ride.pickup&&<p className="ride-detail__result-label"><span>From: </span>{currentRide.ride.pickup && currentRide.ride.pickup.label ? currentRide.ride.pickup.label : ''}</p>}
-        {currentRide.request&&<p className="ride-detail__result-label"><span>From: </span>{currentRide.request.ride.pickup && currentRide.request.ride.pickup.label ? currentRide.request.ride.pickup.label : ''}</p>}
-        {currentRide.destination && <p className="ride-detail__result-label"><span>To: </span>{currentRide.ride.destination && currentRide.ride.destination.label ? currentRide.ride.destination.label : ''}</p>}
+        {currentRide.ride&&currentRide.ride.pickup&&<p className="ride-detail__result-label"><span>From: </span>{currentRide.ride.pickup && currentRide.ride.pickup.label ? currentRide.ride.pickup.label.substring(0, 40) + "..." : ''}</p>}
+        {currentRide.request&&<p className="ride-detail__result-label"><span>From: </span>{currentRide.request.ride.pickup && currentRide.request.ride.pickup.label ? currentRide.request.ride.pickup.label.substring(0, 40) + "..." : ''}</p>}
+        {currentRide.ride&&currentRide.ride.destination && <p className="ride-detail__result-label"><span>To: </span>{currentRide.ride.destination && currentRide.ride.destination.label ? currentRide.ride.destination.label.substring(0, 40) + "..." : ''}</p>}
+        {currentRide.request&& <p className="ride-detail__result-label"><span>To: </span>{currentRide.request.ride.destination && currentRide.request.ride.destination.label ? currentRide.request.ride.destination.label.substring(0, 40) + "..." : ''}</p>}
         <button className="ride-detail__btn" onClick={talkToUser}>{isDriver ? 'Talk to User' : 'Talk to Driver'}</button>
         <button className="ride-detail__btn" onClick={cancelRide}>Cancel the Ride</button>
         {<button className="ride-detail__btn" onClick={finishRide}>Finish the Ride</button>}

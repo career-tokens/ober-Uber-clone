@@ -7,8 +7,11 @@ import { OpenStreetMapProvider } from 'leaflet-geosearch';
 // import custom components.
 import withModal from './Modal';
 import RequestRide from './RequestRide';
+import { useNavigate } from 'react-router-dom';
+import Header from './Header';
 
 function AddressPicker(props) {
+  const history = useNavigate();
   const [isFrom, setIsFrom] = useState(true);
   const [searchResults, setSearchResults] = useState([]);
 
@@ -18,7 +21,7 @@ function AddressPicker(props) {
   const searchRef = useRef();
 
   const { toggleModal } = props;
-
+  
   useEffect(() => {
     initProvider();
   }, []);
@@ -27,8 +30,9 @@ function AddressPicker(props) {
     if (selectedFrom && selectedTo) {
       // show confirmation dialog to request a driver.
       toggleModal(true);
+      history("/");
     }
-  }, [selectedFrom, selectedTo, toggleModal]);
+  }, [selectedFrom, selectedTo, toggleModal,history]);
 
   useEffect(() => {
     if (selectedFrom && selectedTo) {
@@ -54,7 +58,7 @@ function AddressPicker(props) {
     provider.current = new OpenStreetMapProvider({
       params: {
         'accept-language': 'en',
-        countrycodes: "us"
+        //countrycodes: "us"
       }
     });
   }
@@ -82,6 +86,8 @@ function AddressPicker(props) {
   };
 
   return (
+    <>
+    <Header/>
     <div className="address">
       <div className="address__title">
         <div className="address__title-container">
@@ -110,7 +116,8 @@ function AddressPicker(props) {
           }
         </div>
       </div>
-    </div>
+      </div>
+      </>
   );
 }
 
