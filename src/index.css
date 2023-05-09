@@ -842,6 +842,8 @@ input {
   flex: 1;
   border: none;
   outline: none;
+  padding:3px;
+  border-radius:6px;
 }
 
 .search-btn {
@@ -852,6 +854,7 @@ input {
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
+  margin-left:5px;
 }
 
 .main-content {
@@ -867,6 +870,7 @@ input {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius:20px;
 }
 
 .section {
@@ -885,12 +889,13 @@ input {
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   margin-bottom: -10px;
+  margin-left:7px;
 }
-
 .scroll-item {
   flex: 0 0 50%;
   max-width: 240px;
-  margin-right: 10px;
+  margin-left:2px;
+  margin: 10px;
   padding: 10px;
   scroll-snap-align: start;
   border-radius: 10px;
@@ -900,7 +905,7 @@ input {
 
 .scroll-item img {
   width: 100%;
-  height: 120px;
+  height: 163px;
   object-fit: cover;
   border-radius: 5px;
   margin-bottom: 10px;
