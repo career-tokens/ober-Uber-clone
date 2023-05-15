@@ -1,5 +1,8 @@
 
 import "leaflet/dist/leaflet.css"
+import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
+
+import image from "../marker.png"
 import { getDatabase, ref, child, get } from "firebase/database";
 // import useContext, useRef, useEffect, useCallback
 import { useContext, useRef, useEffect, useCallback, useState } from 'react';
@@ -12,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 // import Context
 import Context from '../Context';
 // import leaflet
-import L, { Icon } from "leaflet";
+import L, { Icon, icon } from "leaflet";
 import RequestRide from "./RequestRide";
 var rol = null; var uid = null; var isuser = false; var usre = null;
 require("leaflet-routing-machine");
@@ -32,12 +35,12 @@ function Home() {
     uid = user.uid
     //console.log(uid)
   }
-  const customIcon = new Icon({
-        iconUrl: "https://as2.ftcdn.net/v2/jpg/02/98/28/57/1000_F_298285715_ct4qtZOJH119A39TdMrbkLsfziVCX1Rz.jpg",
-        iconSize: [40,40],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-  })
+  const marker = new L.Icon({
+    iconUrl: image,
+    iconSize: [25, 25],
+    iconAnchor: [15, 25],
+    popupAnchor: [0, 0],
+  });
   
  
 const map = useRef();
@@ -49,10 +52,38 @@ initRouteControl();
 }, []);
 
 const drawRoute = useCallback((from, to) => {
-if (shouldRouteDraw(from, to) && routeControl && routeControl.current) {
-const fromLatLng = new L.LatLng(from.y, from.x);
-const toLatLng = new L.LatLng(to.y, to.x);
-routeControl.current.setWaypoints([fromLatLng, toLatLng]);
+  if (shouldRouteDraw(from, to) && routeControl && routeControl.current) {
+    const fromLatLng = new L.LatLng(from.y, from.x);
+    const toLatLng = new L.LatLng(to.y, to.x);
+
+    const marker1 = new L.Marker([from.y,from.x], {
+      icon: marker,
+    });
+    
+    map.current.addLayer(marker1);
+
+    const marker2 = new L.Marker([to.y,to.x], {
+      icon: marker,
+    });
+    
+    map.current.addLayer(marker2);
+    //routeControl.current.setWaypoints([fromLatLng, toLatLng]);
+
+    var waypoints = [
+      fromLatLng,
+      toLatLng
+    ];
+
+    L.Routing.control({
+      waypoints: waypoints,
+      createMarker: function (i, waypoint, n) {
+        // Use the custom icon for the markers
+        return L.marker(waypoint.latLng, {
+          icon: marker
+        });
+      }
+    }).addTo(map.current);
+
 }
 }, []);
 
@@ -98,26 +129,33 @@ drawRoute(selectedFrom, selectedTo);
     init route control.
     */
     const initRouteControl = () => {
-    if (!routeControl.current) {
-    routeControl.current = L.Routing.control({
-    show: true,
-    fitSelectedRoutes: true,
-    plan: false,
-    lineOptions: {
-    styles: [
-    {
-    color: "blue",
-    opacity: "0.7",
-    weight: 6
-    }
-    ]
-    },
-    router: L.Routing.mapbox(`${process.env.REACT_APP_MAP_BOX_API_KEY}`)
-    })
-    .addTo(map.current)
-    .getPlan();
-    }
+      if (!routeControl.current) {
+        routeControl.current = L.Routing.control({
+          show: true,
+          fitSelectedRoutes: true,
+          plan: false,
+          lineOptions: {
+            styles: [
+              {
+                color: "yellow",
+                opacity: "0.8",
+                weight: 2
+              }
+            ]
+          },
+          createMarker: (latLng) => {
+            return new L.Marker(latLng, {
+              icon: marker
+            });
+          },
+          router: L.Routing.mapbox(`${process.env.REACT_APP_MAP_BOX_API_KEY}`),
+        })
+        .addTo(map.current)
+        .getPlan();
+      }
     };
+    
+    
 
   const renderSidebar = () => {
   
