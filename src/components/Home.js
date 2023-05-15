@@ -67,22 +67,8 @@ const drawRoute = useCallback((from, to) => {
     });
     
     map.current.addLayer(marker2);
-    //routeControl.current.setWaypoints([fromLatLng, toLatLng]);
-
-    var waypoints = [
-      fromLatLng,
-      toLatLng
-    ];
-
-    L.Routing.control({
-      waypoints: waypoints,
-      createMarker: function (i, waypoint, n) {
-        // Use the custom icon for the markers
-        return L.marker(waypoint.latLng, {
-          icon: marker
-        });
-      }
-    }).addTo(map.current);
+  
+    routeControl.current.setWaypoints([fromLatLng, toLatLng]);
 
 }
 }, []);
@@ -143,8 +129,9 @@ drawRoute(selectedFrom, selectedTo);
               }
             ]
           },
-          createMarker: (latLng) => {
-            return new L.Marker(latLng, {
+          createMarker: function (i, waypoint, n) {
+            // Use the custom icon for the markers
+            return L.marker(waypoint.latLng, {
               icon: marker
             });
           },
