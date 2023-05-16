@@ -374,14 +374,14 @@ input {
 .address { 
   background-color: rgb(255, 255, 255);
   box-shadow: rgb(0 0 0 / 15%) 0px 4px 16px;
-  height: 43.0625rem;
+  height: 34.0625rem;
   left: 2%;
   position: fixed;
   top: 17.2%;
-  width: 29rem;
+  width: 26rem;
   z-index: 999;
-  margin-left: 5px;
-  margin-top: -69px;
+  margin-left: 8px;
+  margin-top: -19px;
 }
 
 .address__title { 
