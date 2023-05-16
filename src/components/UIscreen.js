@@ -1,5 +1,5 @@
 import React from 'react';
-import waving from '../waving_man_changed.jpg';
+import ridehailingapp from '../Screenshot 2023-05-16 at 07-38-41 ride hailing app - Google Search.png';
 import taxi from '../fotor-ai-2023050910018.jpg';
 import bike from "../biker_uber (1).jpg";
 import suv from "../suv_uber (1).jpg"
@@ -38,7 +38,7 @@ const UIscreen = () => {
       <div className="main-content">
         {/* Large image container */}
         <div className="image-container">
-          <img src={waving} alt="Random Image" />
+          <img src={ridehailingapp} alt="Random Image" />
         </div>
 
         {/* More ways to use Uber */}

@@ -48,6 +48,8 @@ input {
 .login__welcome {
   padding-left: 10.5rem;
   padding-top: 13.5rem;
+  margin-top: -77px;
+  margin-left: -82px;
 }
 
 .login__welcome img {
@@ -60,7 +62,8 @@ input {
 
 .login__welcome p { 
   font-size: 1.5rem;
-  padding-left: 2.125rem;
+  padding-left: 1.125rem;
+  width:400px;
 }
 
 .login__form-container {
@@ -72,6 +75,8 @@ input {
   box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
   padding: 1.25rem;
   width: 24.75rem;
+  margin-top:216px;
+  margin-left:-225px;
 }
 
 .login__form input {
