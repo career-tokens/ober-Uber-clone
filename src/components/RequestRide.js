@@ -38,7 +38,7 @@ function RequestRide(props) {
       set(ref(db,`rides/${rideUuid}`),{ride}).then(() => {
         setRideRequest(ride);
         setIsLoading(false);
-        history("/")
+        history("/home")
       }).catch(() => {
         setIsLoading(false);
       });

@@ -13,10 +13,10 @@ function OpeningScreen() {
         <p>Or become a driver and earn money on your schedule</p>
       </div>
       <div className="button-container">
-        <Link to="/">
+        <Link to="/uiscreen">
           <button className="ride-button">Ride</button>
         </Link>
-        <Link to="/">
+        <Link to="/home">
           <button className="drive-button">Drive</button>
         </Link>
       </div>

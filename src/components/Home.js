@@ -28,7 +28,7 @@ height: "100vh"
 function Home() {
   const history = useNavigate();
   const [isUser, setIsUser] = useState(null);
-  const { selectedFrom, selectedTo, user, currentRide } = useContext(Context);
+  const { selectedFrom, setSelectedFrom, selectedTo, setSelectedTo, user, currentRide } = useContext(Context);
   //console.log(user)
   if (user) {
     usre=user
@@ -78,7 +78,8 @@ if (shouldRouteDraw(selectedFrom, selectedTo)) {
 drawRoute(selectedFrom, selectedTo);
 }
 }, [selectedFrom, selectedTo, drawRoute]);
-
+  
+ 
 /**
 
     check a route should be drawn, or not.
@@ -86,9 +87,11 @@ drawRoute(selectedFrom, selectedTo);
     @param {*} selectedTo
     */
   const shouldRouteDraw = (selectedFrom, selectedTo) => {
-      console.log(selectedFrom)
-    return selectedFrom && selectedTo && selectedFrom.label &&
-    selectedTo.label && selectedFrom.x && selectedTo.x &&
+    console.log("selectedFrom ",selectedFrom)
+    console.log("selectedTo ", selectedTo)
+    console.log(selectedFrom && selectedTo&& selectedFrom.x && selectedTo.x &&
+      selectedFrom.y && selectedTo.y)
+    return selectedFrom && selectedTo&& selectedFrom.x && selectedTo.x &&
     selectedFrom.y && selectedTo.y;
     };
 
@@ -174,6 +177,23 @@ drawRoute(selectedFrom, selectedTo);
     if (isuser && !currentRide && (!selectedFrom || !selectedTo)) {
       history('/route');
     }
+    if (!selectedFrom && !selectedTo && currentRide)
+    {
+      //console.log(currentRide)
+      //setSelectedTo(currentRide.ride.destination.raw)
+      //setSelectedFrom(currentRide.ride.pickup.raw)
+      console.log("destination ", currentRide.ride.destination.raw.lat)
+      setSelectedFrom(() => ({
+        x: currentRide.ride.pickup.raw.lon,
+        y: currentRide.ride.pickup.raw.lat,
+      }));
+      setSelectedTo(() => ({
+        x:currentRide.ride.destination.raw.lon ,
+        y:currentRide.ride.destination.raw.lat,
+      }));
+      
+    }
+      
     if (selectedFrom && selectedTo&&!currentRide)
       return <RequestRide props={"was required for modal but now not req"}/>
         if (isuser && currentRide) {

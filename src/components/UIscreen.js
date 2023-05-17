@@ -22,11 +22,14 @@ const UIscreen = () => {
             type="text"
             placeholder="Enter pick up point"
             className="search-input"
+            onClick={() => {
+              window.location.href = '/home';
+            }}
           />
           <button
             className="search-btn"
             onClick={() => {
-              window.location.href = '/';
+              window.location.href = '/home';
             }}
           >
             Search

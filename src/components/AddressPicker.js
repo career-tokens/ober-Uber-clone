@@ -30,7 +30,7 @@ function AddressPicker(props) {
     if (selectedFrom && selectedTo) {
       // show confirmation dialog to request a driver.
       toggleModal(true);
-      history("/");
+      history("/home");
     }
   }, [selectedFrom, selectedTo, toggleModal,history]);
 
