@@ -148,13 +148,7 @@ function SignUp(props) {
       <div className="signup__content">
         <div className="signup__container">
           <div className="signup__title">Sign Up</div>
-          <div className="signup__close">
-            <img
-              alt="close"
-              onClick={() => toggleModal(false)}
-              src="https://static.xx.fbcdn.net/rsrc.php/v3/y2/r/__geKiQnSG-.png"
-            />
-          </div>
+          <div className="signup__close" onClick={() => toggleModal(false)}>Close</div>
         </div>
         <div className="signup__subtitle"></div>
         <div className="signup__form">
