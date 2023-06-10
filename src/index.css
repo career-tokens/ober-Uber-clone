@@ -359,11 +359,12 @@ input {
 }
 
 .header__logout {
-  align-items: center;
+  //align-items: center;
   color: #fff;
   display: grid;
   justify-content: right;
   padding-right: 0.75rem;
+  margin-left:40vw;
 }
 
 .header__right img {
@@ -600,9 +601,9 @@ input {
   background-color: rgb(255, 255, 255);
   box-shadow: rgb(0 0 0 / 15%) 0px 4px 16px;
   height: 32.0625rem;
-  left: 2%;
+  left: 6%;
   position: fixed;
-  top: 13%;
+  top: 57%;
   width: 25rem;
   z-index: 999;
 }
@@ -683,16 +684,17 @@ input {
 }
 
 .ride-detail {
-  margin-top:232px;
+  //margin-top:232px;
   margin-left:17px;
   background-color: rgb(255, 255, 255);
   box-shadow: rgb(0 0 0 / 15%) 0px 4px 16px;
   height: 32.0625rem;
   left: 2%;
   position: fixed;
-  top: 13%;
+  top: 11%;
   width: 25rem;
   z-index: 999;
+  border-radius:56px;
 }
 
 .ride-detail__user-avatar { 

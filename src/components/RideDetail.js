@@ -1,5 +1,5 @@
 // import useContext.
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 // import firebase authentication.
 import { realTimeDb } from "../firebase";
 // import Context
@@ -70,8 +70,26 @@ function RideDetail(props) {
     history('/chat');
   };
 
+  const [marginTop, setMarginTop] = useState(232);
+  const [options, setOptions] = useState("Hide Options");
+  const moveDown = () => {
+    if (marginTop === 232) {
+      setMarginTop(395);
+      setOptions("Show Options")
+    }
+    else {
+      setMarginTop(232);
+      setOptions("Hide Options")
+    }
+  };
+  
   return (
-    <div className="ride-detail">
+    <div className="ride-detail"
+      style={{
+      marginTop: `${marginTop}px`,
+      transition: 'margin-top 2s ease',
+      }}>
+      <button onClick={moveDown} style={{marginLeft:"39%",padding:"0.1rem"}}>{options}</button>
       <div className="ride-detail__user-avatar">
         <img src={user.avatar} alt={user.email} />
       </div>
