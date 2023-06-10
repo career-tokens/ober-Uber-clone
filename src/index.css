@@ -233,15 +233,15 @@ input {
 /* The Modal (background) */
 .signup {
   background-color: rgba(255, 255, 255, .8);
-  display: block; /* Hidden by default */
-  height: 100%; /* Full height */
+  display: block;
+  height: 100%;
   left: 0;
-  /* overflow: auto; */
-  position: fixed; /* Stay in place */
+  overflow: auto;
+  position: fixed;
   top: 0;
-  width: 100%; /* Full width */
-  z-index: 1; /* Sit on top */
-  margin-left:-38px;
+  width: 97vw;
+  z-index: 1;
+  margin-left: 2vw;
 }
 
 /* Modal Content/Box */
@@ -320,6 +320,7 @@ input {
   margin: 1.25rem auto;
   outline: none;
   padding: 0.875rem 1rem;
+  border-radius:21px;
 }
 
 .signup__btn:hover {
