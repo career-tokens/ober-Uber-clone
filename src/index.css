@@ -32,9 +32,8 @@ input {
   background-color: #f0f2f5;
   display: grid;
   grid-template-columns: 55% 45%;
-  height: 100vh;
-  width: 100vw;
-  margin-left:5px;
+  height: 110vh;
+  width: 110vw;
 }
 
 .login__logo {
@@ -47,10 +46,8 @@ input {
 }
 
 .login__welcome {
-  padding-left: 10.5rem;
-  padding-top: 13.5rem;
-  margin-top: -77px;
-  margin-left: -82px;
+  margin-left: 25%;
+  margin-top: 94%;
 }
 
 .login__welcome img {
@@ -75,9 +72,9 @@ input {
   background-color: #fff;
   box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
   padding: 1.25rem;
-  width: 24.75rem;
-  margin-top:216px;
-  margin-left:-225px;
+  width: 206%;
+  margin-top: 165%;
+  margin-left: -114%;
 }
 
 .login__form input {
@@ -145,7 +142,7 @@ input {
 .lds-roller {
   display: inline-block;
   height: 5rem;
-  left: 48%;
+  left: 39%;
   position: fixed;
   top: 50%;
   width: 5rem;
@@ -359,12 +356,9 @@ input {
 }
 
 .header__logout {
-  //align-items: center;
   color: #fff;
-  display: grid;
-  justify-content: right;
-  padding-right: 0.75rem;
-  margin-left:40vw;
+  left: 30%;
+  position: relative;
 }
 
 .header__right img {
@@ -378,15 +372,13 @@ input {
 
 .address { 
   background-color: rgb(255, 255, 255);
-  box-shadow: rgb(0 0 0 / 15%) 0px 4px 16px;
-  height: 34.0625rem;
-  left: 2%;
+  box-shadow: rgb(0 0 0 / 15%) 4px 4px 16px;
+  height: 75%;
+  left: 2.5%;
   position: fixed;
   top: 17.2%;
-  width: 23rem;
+  width: 89%;
   z-index: 999;
-  margin-left: 10px;
-  margin-top: -19px;
 }
 .address__title { 
   align-items: center;
@@ -528,7 +520,7 @@ input {
   left: 0;
   /* overflow: auto; */
   position: fixed; /* Stay in place */
-  top: 280px;
+  top: 37%;
   width: 100%; /* Full width */
   z-index: 1000; /* Sit on top */
 }
@@ -537,14 +529,15 @@ input {
 .request-ride__content {
   background-color: #fefefe;
   box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-  margin: 15% auto; /* 15% from the top and centered */
-  margin-top: 49%;
-  width: 27rem; /* Could be more or less, depending on screen size */
+  margin: 15% auto;
+  margin-top: 68%;
+  width: 99%;/* Could be more or less, depending on screen size */
 }
 
 .request-ride__container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  width: 104%;
 }
 
 .request-ride__title {
@@ -574,6 +567,7 @@ input {
 .request-ride__form {
   width: 100%;
   padding: 1.25rem;
+  padding-bottom: 0rem;
 }
 
 .request-ride__btn {
@@ -600,11 +594,11 @@ input {
 .ride-list { 
   background-color: rgb(255, 255, 255);
   box-shadow: rgb(0 0 0 / 15%) 0px 4px 16px;
-  height: 32.0625rem;
-  left: 6%;
+  height: 38%;
+  left: 2%;
   position: fixed;
   top: 57%;
-  width: 25rem;
+  width: 96%;
   z-index: 999;
 }
 
@@ -685,16 +679,16 @@ input {
 
 .ride-detail {
   //margin-top:232px;
-  margin-left:17px;
+  margin-left: 1%;
   background-color: rgb(255, 255, 255);
   box-shadow: rgb(0 0 0 / 15%) 0px 4px 16px;
   height: 32.0625rem;
   left: 2%;
   position: fixed;
   top: 11%;
-  width: 25rem;
+  width: 94%;
   z-index: 999;
-  border-radius:56px;
+  border-radius: 56px;
 }
 
 .ride-detail__user-avatar { 

@@ -87,7 +87,7 @@ function RideDetail(props) {
     <div className="ride-detail"
       style={{
       marginTop: `${marginTop}px`,
-      transition: 'margin-top 2s ease',
+      transition: 'margin-top 1s ease',
       }}>
       <button onClick={moveDown} style={{marginLeft:"39%",padding:"0.1rem"}}>{options}</button>
       <div className="ride-detail__user-avatar">

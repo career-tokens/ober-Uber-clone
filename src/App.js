@@ -145,11 +145,11 @@ function App() {
       <Router>
         <Routes>
           {/* Home Route */}
-          <Route path="/" element={ <OpeningScreen/>} />
+          <Route path="/" element={ <Login/>} />
           <Route path="/chat" element={ <Chat/>} />
           {/* End Home Route */}
           {/* Login Route */}
-          <Route path="/login" element={ <Login />} />  
+          <Route path="/openingscreen" element={ <OpeningScreen/>} />  
           {/* End Login Route */}
           <Route path="/route" element={<AddressPicker />} />
           <Route path="/home" element={<Home/>} />

@@ -71,7 +71,7 @@ function Login(props) {
                     // hide loading.
                     setIsLoading(false);
                     // redirect to home page.
-                    history('/');
+                    history('/openingscreen');
                   },
                   (error) => {
                     // User login failed, check error and take appropriate action.
