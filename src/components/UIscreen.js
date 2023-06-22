@@ -46,7 +46,7 @@ const UIscreen = () => {
 
         {/* More ways to use Uber */}
         <div className="section">
-          <h2>More ways to use Uber</h2>
+          <h2>More ways to use Ober</h2>
           <div className="scroll-container">
             <div className="scroll-item taxi">
               <img src={taxi} alt="Image 1" />
@@ -64,7 +64,7 @@ const UIscreen = () => {
             </div>
             <div className="scroll-item">
               <img src={suv} alt="Image 3" />
-              <div className="title">Uber XL</div>
+              <div className="title">Ober XL</div>
               <div className="description">
                 Premium rides in high-end cars for up to 4-6 people
               </div>
@@ -74,7 +74,7 @@ const UIscreen = () => {
 
         {/* Ways to plan with Uber */}
         <div className="section">
-          <h2>Ways to plan with Uber</h2>
+          <h2>Ways to plan with Ober</h2>
           <div className="scroll-container">
             <div className="scroll-item">
               <img src={calendar} alt="Image 4" />
@@ -92,7 +92,7 @@ const UIscreen = () => {
             </div>
             <div className="scroll-item">
               <img src={ubereats} alt="Image 6" />
-              <div className="title">Uber Eats</div>
+              <div className="title">Ober Eats</div>
               <div className="description">
                 Get food delivered from your favorite restaurants
               </div>

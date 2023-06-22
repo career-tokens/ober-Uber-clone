@@ -11,7 +11,6 @@ import {
 import Home from './components/Home';
 import Login from './components/Login';
 import Loading from './components/Loading';
-import Chat from './components/Chat';
 import PrivateRoute from './components/PrivateRoute';
 // import global styling.
 import './index.css';
@@ -146,7 +145,6 @@ function App() {
         <Routes>
           {/* Home Route */}
           <Route path="/" element={ <Login/>} />
-          <Route path="/chat" element={ <Chat/>} />
           {/* End Home Route */}
           {/* Login Route */}
           <Route path="/openingscreen" element={ <OpeningScreen/>} />  

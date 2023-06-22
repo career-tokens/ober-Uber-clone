@@ -30,24 +30,24 @@ input {
 
 .login__container {
   background-color: #f0f2f5;
-  display: grid;
-  grid-template-columns: 55% 45%;
-  height: 110vh;
-  width: 110vw;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
 }
 
 .login__logo {
-  width: 10.25rem;
-  padding-left: 2.125rem;
+  width: 10.25em;
+  padding-left: 2.125em;
 }
 
 .login__logo img {
-  width: 10.25rem !important;
+  width: 10.25em !important;
 }
 
 .login__welcome {
-  margin-left: 25%;
-  margin-top: 94%;
+  text-align: center;
+  position: relative;
+  margin-top: auto;
 }
 
 .login__welcome img {
@@ -59,29 +59,35 @@ input {
 }
 
 .login__welcome p { 
-  font-size: 1.5rem;
-  padding-left: 1.125rem;
-  width:400px;
+  font-size: 1.5em;
+  padding-left: 1.125em;
+  width: 108vw;
 }
 
 .login__form-container {
-  padding-top: 6.5rem;
+  justify-content: center;
+  display: flex;
+  text-align: center;
+  position: relative;
+  margin-top: 20vh;
+  margin-bottom: 5vh;
 }
 
 .login__form {
   background-color: #fff;
   box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-  padding: 1.25rem;
-  width: 206%;
-  margin-top: 165%;
-  margin-left: -114%;
+  padding: 1.25em;
+  width: 88vw;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .login__form input {
   border: 1px solid #E5E7EB;
-  font-size: 1rem;
-  margin-bottom: 0.75rem;
-  padding: 0.875rem 1rem;
+  font-size: 1em;
+  margin-bottom: 0.75em;
+  padding: 0.875em 1em;
   width: 100%;
 }
 
@@ -92,7 +98,7 @@ input {
   font-size: 1rem;
   font-weight: 600;
   outline: none;
-  padding: 0.875rem 1rem;
+  padding: 0.875em 1em;
   width: 100%;
 }
 
@@ -105,8 +111,8 @@ input {
   border-bottom: 1px solid #E5E7EB;
   color: #2563EB;
   display: block;
-  font-size: 0.9375rem;
-  padding: 1.25rem 0;
+  font-size: 0.9375em;
+  padding: 1.25em 0;
   text-align: center;
 }
 
@@ -117,8 +123,8 @@ input {
 .login__signup {
   color: #2563EB;
   display: block;
-  font-size: 0.9375rem;
-  padding: 1.25rem 0;
+  font-size: 0.9375em;
+  padding: 1.25em 0;
   text-align: center;
 }
 
@@ -245,9 +251,9 @@ input {
 .signup__content {
   background-color: #fefefe;
   box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-  margin: 15% auto;
-  margin-top: 20%;
-  width: 24rem; /* Could be more or less, depending on screen size */
+  margin: auto;
+  width: 24em;
+  margin-top: 41vh;
 }
 
 .signup__container {
@@ -329,7 +335,7 @@ input {
   background: #000000;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  height: 3.5rem;
+  height: 8.5vh;
   width: 100%;
 }
 
@@ -373,12 +379,14 @@ input {
 .address { 
   background-color: rgb(255, 255, 255);
   box-shadow: rgb(0 0 0 / 15%) 4px 4px 16px;
-  height: 75%;
-  left: 2.5%;
-  position: fixed;
-  top: 17.2%;
-  width: 89%;
+  height: 80vh;
+  width: 90vw;
+  position: relative;
+  display: flex;
   z-index: 999;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 4vh;
 }
 .address__title { 
   align-items: center;
@@ -678,29 +686,29 @@ input {
 }
 
 .ride-detail {
-  //margin-top:232px;
   margin-left: 1%;
   background-color: rgb(255, 255, 255);
   box-shadow: rgb(0 0 0 / 15%) 0px 4px 16px;
-  height: 32.0625rem;
-  left: 2%;
+  height: 53vh;
   position: fixed;
-  top: 11%;
-  width: 94%;
+  top: 44vh;
+  width: 98%;
   z-index: 999;
   border-radius: 56px;
+  display: flex;
+  flex-direction: column;
 }
 
 .ride-detail__user-avatar { 
   display: grid;
   justify-content: center;
-  padding-bottom: 1rem;
-  padding-top: 2rem;
+  padding-bottom: 1vh;
+  padding-top: 2vh;
 }
 
 .ride-detail__user-avatar img {
-  width: 5rem;
-  height: 5rem;
+  width: 21vw;
+  height: 9vh;
 }
 
 .ride-detail__user-info {
@@ -710,17 +718,17 @@ input {
 }
 
 .ride-detail__actions {
-  padding: 2rem;
+  padding: 4vh;
 }
 
 .ride-detail__btn {
   background: #000;
   border: none;
   color: #fff;
-  font-size: 0.9375rem;
-  margin: 0.25rem 0;
+  font-size: 1.8vh;
+  margin: 0.5vh 0;
   outline: none;
-  padding: 0.75rem 1rem;
+  padding: 1.75vh 1vh;
   width: 100%;
 }
 
@@ -730,8 +738,8 @@ input {
 }
 
 .ride-detail__result-label {
-  font-size: 0.9375rem;
-  padding-bottom: 0.5rem;
+  font-size: 1.8vh;
+  padding-bottom: 1vh;
 }
 
 .ride-detail__result-label span {
@@ -768,19 +776,20 @@ input {
 }
 
 .logo-container {
-  width: 50%;
-  margin-bottom: 2rem;
-  margin-right:40px;
+  margin-bottom: 2em;
+  display: flex;
+  justify-content: center;
+  width: 50vw;
 }
 
 .logo-container img {
   max-width: 100%;
-  margin-right:-10px;
 }
 
 .title-container {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 3em;
+  width: 53vw;
 }
 
 .title-container h1 {
@@ -798,15 +807,14 @@ input {
 .drive-button {
   background-color: #fff;
   color: #000;
-  font-size: 1.2rem;
+  font-size: 1.2em;
   font-weight: bold;
-  padding: 1rem 3rem;
+  padding: 1em 3em;
   border: none;
-  border-radius: 3rem;
-  margin-bottom: 1rem;
+  border-radius: 3em;
+  margin-bottom: 1em;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-left:-40px;
 }
 
 .ride-button:hover,

@@ -67,18 +67,18 @@ function RideDetail(props) {
    * talk to user
    */
   const talkToUser = () => {
-    history('/chat');
+    window.location.replace('https://chat-uber.vercel.app/');
   };
 
-  const [marginTop, setMarginTop] = useState(232);
+  const [marginTop, setMarginTop] = useState(0);
   const [options, setOptions] = useState("Hide Options");
   const moveDown = () => {
-    if (marginTop === 232) {
-      setMarginTop(395);
+    if (marginTop === 0) {
+      setMarginTop(26);
       setOptions("Show Options")
     }
     else {
-      setMarginTop(232);
+      setMarginTop(0);
       setOptions("Hide Options")
     }
   };
@@ -86,10 +86,10 @@ function RideDetail(props) {
   return (
     <div className="ride-detail"
       style={{
-      marginTop: `${marginTop}px`,
+      marginTop: `${marginTop}vh`,
       transition: 'margin-top 1s ease',
       }}>
-      <button onClick={moveDown} style={{marginLeft:"39%",padding:"0.1rem"}}>{options}</button>
+      <button onClick={moveDown} style={{padding:"0.1vh",margin:"auto",width:"25vw"}}>{options}</button>
       <div className="ride-detail__user-avatar">
         <img src={user.avatar} alt={user.email} />
       </div>
