@@ -67,7 +67,7 @@ function RideDetail(props) {
    * talk to user
    */
   const talkToUser = () => {
-    window.location.replace('https://chat-uber.vercel.app/');
+    window.location.replace('https://open-chat-app-with-socket-io.vercel.app/');
   };
 
   const [marginTop, setMarginTop] = useState(0);
