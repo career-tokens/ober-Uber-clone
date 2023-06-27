@@ -177,22 +177,26 @@ drawRoute(selectedFrom, selectedTo);
     if (isuser && !currentRide && (!selectedFrom || !selectedTo)) {
       history('/route');
     }
-    if (!selectedFrom && !selectedTo && currentRide)
-    {
-      //console.log(currentRide)
-      //setSelectedTo(currentRide.ride.destination.raw)
-      //setSelectedFrom(currentRide.ride.pickup.raw)
-      console.log("destination ", currentRide.ride.destination.raw.lat)
+    if (!selectedFrom && !selectedTo && localStorage.getItem("currentRide")) {
+    
+      const currentride = JSON.parse(localStorage.getItem("currentRide"));
+      console.log(currentride)
+    
+      const destinationRaw = currentride.request?.ride?.destination?.raw || currentride.ride.destination.raw;
+      const pickupRaw = currentride.request?.ride?.pickup?.raw || currentride.ride.pickup.raw;
+    
       setSelectedFrom(() => ({
-        x: currentRide.ride.pickup.raw.lon,
-        y: currentRide.ride.pickup.raw.lat,
+        x: pickupRaw.lon,
+        y: pickupRaw.lat,
       }));
+    
       setSelectedTo(() => ({
-        x:currentRide.ride.destination.raw.lon ,
-        y:currentRide.ride.destination.raw.lat,
+        x: destinationRaw.lon,
+        y: destinationRaw.lat,
       }));
-      
     }
+    
+    
       
     if (selectedFrom && selectedTo&&!currentRide)
       return <RequestRide props={"was required for modal but now not req"}/>
