@@ -987,3 +987,77 @@ input {
     max-width: 52vh;
   }
 }
+/** Signup forntend changes **/
+@media (min-width: 550px){
+  .signup{
+    width:100vw;
+    margin-left:0;
+  }
+  .signup__content{
+    margin-top:15vh;
+    width:55vh;
+  }
+}
+@media (max-width:549px) {
+  .signup{
+    width:100vw;
+    margin-left:0;
+  }
+  .signup__content{
+    margin-top:15vh;
+    width:90vw;
+  }
+}
+/**uiscreen changes **/
+@media (min-width:550px){
+  .container{
+    max-width:10000px;
+  }
+  .image-container{
+    width: 70vw;
+height: auto;
+margin: auto;
+  margin-bottom: auto;
+margin-bottom: -8vh;
+  }
+  .section h2{
+    font-size: 5vh;
+color: #FA3;
+text-align:center;
+  }
+  .scroll-container{
+    margin-left: 0;
+display: flex;
+flex-direction: row;
+/**justify-content:center  this was messing with the scrollbar since the middle portion was getting viewed*/
+gap: 3vw;
+text-align:center;
+color: yellowgreen;
+  }
+  .scroll-item{
+    width: 45.5vh;
+max-width: 500px;
+flex: 0 0 0;
+  }
+  .scroll-item img{
+    height: 42vh;
+width: auto;
+  }
+  .section{
+    margin-bottom:8vh;
+  }
+  .scroll-item .title{
+    font-size:4vh;
+  }
+  .scroll-item .description{
+    font-size:2.5vh;
+  }
+  :root {
+    --custom-margin-left: calc( max( (100vw - 1124px) / 2, 0px) );
+  }
+  /**since middle portion was constant length so directly applying x vw on margin-left couldnt work so needed to use calculation
+  such that for smaller screen than the (almost)constant length , no margin left is required and scroll should also be workign fine*/
+  .scroll-container{
+    margin-left: var(--custom-margin-left);
+  }
+}
