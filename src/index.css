@@ -1061,3 +1061,70 @@ width: auto;
     margin-left: var(--custom-margin-left);
   }
 }
+
+/** location choosing page frontend desktop made*/
+@media(min-width:600px){
+  .header__logout{
+    position:absolute;
+    left:auto;
+    right:3vw;
+  }
+  .address{
+    width:76vh;
+  }
+}
+/** ride request choosing page frontend desktop made*/
+@media(min-width:600px){
+  :root {
+    --custom-margin-left: calc( ( (100vw - 55vh) / 2) );
+  }
+  .request-ride{
+    position: fixed;
+    height: 20vh;
+    z-index: 1000;
+    top: 25vh;
+    background-color: transparent;
+    width:55vh;
+    font-size:3vh;
+    margin-left: var(--custom-margin-left);
+  }
+  .request-ride__close{
+    display:none;
+  }
+  .request-ride__title{
+    padding: 2vh 0;
+    width: 55vh;
+  }
+  .request-ride__content{
+    text-align:center;
+  }
+  .lds-roller{
+    left:45%;
+  }
+  .ride-list{
+    top: 60vh;
+width: 60vh;
+left: 33%;
+  }
+  .ride-list__result-label{
+    font-size:2.5vh;
+  }
+  .ride-detail__btn{
+    font-size:2.3vh;
+  }
+  .ride-detail__result-label{
+    font-size:2.4vh;
+  }
+  .ride-detail__user-avatar img {
+    width: 22vh;
+    height: auto;
+}
+.ride-detail{
+  width: 50vh;
+  height: 71vh;
+  top:20%;
+}
+.bn{
+  display:none;
+}
+}
