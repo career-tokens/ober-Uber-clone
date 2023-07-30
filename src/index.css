@@ -35,6 +35,7 @@ input {
   flex-direction: column;
 }
 
+
 .login__logo {
   width: 10.25em;
   padding-left: 2.125em;
@@ -934,3 +935,55 @@ input {
   color: #666;
 }
 
+@media(max-width:549px){
+  .img{
+    display:none;
+  }
+  .login__container{
+    overflow: hidden;
+  }
+  .login__welcome{
+    margin-top:18vh;
+  }
+  .login__form-container{
+    position:absolute;
+    bottom:6vh;
+    margin-left:6vw;
+    margin-bottom:0;
+  }
+}
+@media(min-width:550px)
+{
+  .img{
+    width:50vw;
+  }
+  .login__container {
+    flex-direction:row;
+  }
+  .overall{
+    width:50vw;
+  }
+  .login__welcome{
+    margin-top:10vh;
+  }
+  .login__logo{
+    padding-left:0;
+    margin:auto;
+    width:auto;
+  }
+  .login__welcome p{
+    font-size:4vh;
+    padding-left:0;
+    width:auto;
+  }
+  .login__form {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    padding: 1.25em;
+    width: 30vw;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    max-width: 52vh;
+  }
+}

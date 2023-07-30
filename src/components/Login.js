@@ -95,6 +95,8 @@ function Login(props) {
 
   return (
     <div className="login__container">
+      <img className="img" src="https://img.freepik.com/free-vector/online-application-call-taxi-service-by-smart-phone_1150-48845.jpg?w=2000" alt="" />
+      <div className="overall">
       <div className="login__welcome">
         <div className="login__logo">
           <img src={logoBlack} alt="Uber Clone" />
@@ -115,6 +117,7 @@ function Login(props) {
           <span className="login__forgot-password">Forgot password?</span>
           <span className="login__signup" onClick={() => toggleModal(true)}>Create New Account</span>
         </div>
+      </div>
       </div>
     </div>
   );
