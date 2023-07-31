@@ -23,7 +23,7 @@ function Header() {
       // remove authenticated user from context.
       setUser(null);
       // redirect to login page.
-      history('/login');
+      history('/');
     }
   }
 

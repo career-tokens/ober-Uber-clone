@@ -1076,7 +1076,7 @@ width: auto;
 /** ride request choosing page frontend desktop made*/
 @media(min-width:600px){
   :root {
-    --custom-margin-left: calc( ( (100vw - 55vh) / 2) );
+    --custom-margin-left1: calc( ( (100vw - 55vh) / 2) );
   }
   .request-ride{
     position: fixed;
@@ -1086,7 +1086,7 @@ width: auto;
     background-color: transparent;
     width:55vh;
     font-size:3vh;
-    margin-left: var(--custom-margin-left);
+    margin-left: var(--custom-margin-left1);
   }
   .request-ride__close{
     display:none;
