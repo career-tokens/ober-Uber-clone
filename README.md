@@ -1,24 +1,31 @@
-![image](https://github.com/career-tokens/Ober_Chat/assets/134730030/f3d122fe-f678-493b-a79c-0929e7435679)
+![image](https://github.com/career-tokens/ober-intermediate/assets/134730030/60ec48db-4e3c-4c10-ab81-a0f0051be7ac)
 
+# Ober App-an Uber clone
 
-# Ober-ChatApp
-
-It is an app to chat online .Its mainly built as an add-on for the Ober clone so that the driver and user can chat online .
-Since its an add-on for uber clone, its mainly made for mobile viewing , so please use the mobile viewing feature of the browser if you are on pc.
+It is an app to book rides online. Its mainly built for mobile viewing.
 
 ## App Link:
-[ober-chat-app.vercel.app](https://ober-chat-app.vercel.app/)
+https://uber-blond.vercel.app/
 
 ## Tech Stack used:
-React , Express , Node , Socket.io 
+React , Firebase , OpenStreetMap API 
 ## Features:
 i)clean and cool UI/UX\
-ii)anyone can join the chat
-
+ii)for authentication , firebase is used\
+iii)the app is mainly built to be viewed on mobiles
+(atleast verified for the dimensions provided on browser and 
+personal phone)\
+iv)you can login to the app as either user or driver\
+v)you can logout anytime\
+vi)the user can view the shortest route between two selected locations\
+vii)you can cancel or finish your ride \
+viii)you can chat with the driver online if the ride's late\
+ix)the app is built to maintain realtime connection that simultaneously the user and driver can login and interact
 
 ## Cons:
-i)Its not as good as whatsapp\
-ii)it does not remember the previous chat( which can be seen as a feature as well)\
-iii)its mainly built for mobile users
+i)payments interface not yet built\
+ii)admnin panel not built but users can be viewed from firebase\
+iii)the driver can't preview a route , only after selecting the ride, the shortest route is shown\
+iv)security features like car no. , driver info can't be added since no real info present
 ## Video of the project:
-[Untitled (6).webm](https://github.com/career-tokens/Ober_Chat/assets/134730030/1570baf2-d104-4cd5-bc55-eede70975a70)
+https://github.com/career-tokens/ober-intermediate/assets/134730030/5c89e25c-9138-4366-a6bf-2b6e1588dc3c
