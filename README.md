@@ -26,6 +26,13 @@ ii)admnin panel not built but users can be viewed from firebase\
 iii)the driver can't preview a route , only after selecting the ride, the shortest route is shown\
 iv)security features like car no. , driver info can't be added since no real info present
 ## Videos of the project:
-## Desktop version:
+
+
+https://github.com/career-tokens/ober-Uber-clone/assets/134730030/506ecd34-b884-4c7e-a8ad-7aa1c0b71eb1
+
+
+[2023-08-05 22-30-28 [MConverter.eu].webm](https://github.com/career-tokens/ober-Uber-clone/assets/134730030/cc63f00c-d26f-4a2a-b612-0a777188bee3)
+
+
 
 
